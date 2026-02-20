@@ -5,9 +5,7 @@ import Button from "primevue/button";
 <template>
   <div class="container-header">
     <div class="uppercase text-muted-foreground tracking-wider">Scenarios</div>
-    <div class="add-scenario-button-container">
-    </div>
-    <Button severity="primary" class="add-scenario-button" size="small" icon="pi pi-plus"/>
+    <Button class="add-scenario-button" size="small" icon="pi pi-plus"/>
   </div>
 </template>
 
@@ -19,7 +17,7 @@ import Button from "primevue/button";
   justify-content: space-between;
 
   > .uppercase {
-    font-size: small;
+    font-size: 12px;
     font-weight: 600;
     display: flex;
     align-items: center;
@@ -30,6 +28,7 @@ import Button from "primevue/button";
   background-color: transparent;
   color: hsl(var(--muted-foreground));
   border-color: transparent;
+  padding: 4px;
 }
 
 .add-scenario-button:hover {

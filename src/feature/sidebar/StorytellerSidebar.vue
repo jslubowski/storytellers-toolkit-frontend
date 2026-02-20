@@ -5,10 +5,10 @@ import {ProgressSpinner} from "primevue";
 import {useScenariosStore} from "@/domain/scenario/store/scenarios.ts";
 import {onMounted} from "vue";
 
-const { isLoading, fetchScenarios} = useScenariosStore();
+const scenariosStore = useScenariosStore();
 
 onMounted(() => {
-  fetchScenarios();
+  scenariosStore.fetchScenarios();
 });
 </script>
 
@@ -16,8 +16,7 @@ onMounted(() => {
   <div class="scenario-sidebar">
     <Header />
 
-    <div v-if="isLoading" class="spinner-container">
-
+    <div v-if="scenariosStore.isLoading" class="spinner-container">
 <!-- change color to --primary, probably by themes      -->
       <ProgressSpinner strokeWidth="4" />
     </div>
