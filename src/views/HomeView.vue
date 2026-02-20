@@ -1,9 +1,10 @@
 <script setup lang="ts">
-import TheWelcome from '../components/TheWelcome.vue'
+import StorytellerSidebar from "@/feature/sidebar/StorytellerSidebar.vue";
 </script>
 
 <template>
-  <main>
-    <TheWelcome />
-  </main>
+  <StorytellerSidebar />
 </template>
+
+<style scoped>
+</style>
