@@ -7,7 +7,7 @@
   </body>
 </template>
 
-<style scoped>
+<style>
 body {
   height: 100vh;
 }

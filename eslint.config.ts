@@ -1,14 +1,11 @@
-import { globalIgnores } from 'eslint/config'
 import { defineConfigWithVueTs, vueTsConfigs } from '@vue/eslint-config-typescript'
-import pluginVue from 'eslint-plugin-vue'
-import pluginVitest from '@vitest/eslint-plugin'
-import pluginOxlint from 'eslint-plugin-oxlint'
-import skipFormatting from 'eslint-config-prettier/flat'
 
-// To allow more languages other than `ts` in `.vue` files, uncomment the following lines:
-// import { configureVueProject } from '@vue/eslint-config-typescript'
-// configureVueProject({ scriptLangs: ['ts', 'tsx'] })
-// More info at https://github.com/vuejs/eslint-config-typescript/#advanced-setup
+import pluginVitest from '@vitest/eslint-plugin'
+import { globalIgnores } from 'eslint/config'
+import skipFormatting from 'eslint-config-prettier/flat'
+import pluginOxlint from 'eslint-plugin-oxlint'
+import simpleImportSort from 'eslint-plugin-simple-import-sort'
+import pluginVue from 'eslint-plugin-vue'
 
 export default defineConfigWithVueTs(
   {
@@ -26,7 +23,30 @@ export default defineConfigWithVueTs(
     files: ['src/**/__tests__/*'],
   },
 
+  {
+    plugins: {
+      'simple-import-sort': simpleImportSort
+    },
+    rules: {
+      'simple-import-sort/imports': [
+        'error',
+        {
+          groups: [
+            ['^vue$', '^@vue', '^pinia'],
+            ['^@?\\w'],
+            ['^@/domain/.*/store', '^@/store'],
+            ['^@/components/'],
+            ['^@/types', '^@/.*/types', '^@/.*/schema'],
+            ['^\\u0000'],
+            ['^\\./', '^\\.\\./']
+          ]
+        }
+      ],
+      'simple-import-sort/exports': 'error'
+    }
+  },
+
   ...pluginOxlint.buildFromOxlintConfigFile('.oxlintrc.json'),
 
-  skipFormatting,
+  skipFormatting
 )

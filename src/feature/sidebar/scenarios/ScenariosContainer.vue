@@ -1,8 +1,10 @@
 <script setup lang="ts">
-import 'primeicons/primeicons.css'
-import ScenariosHeader from "@/feature/sidebar/scenarios/ScenariosHeader.vue";
 import {useScenariosStore} from "@/domain/scenario/store/scenarios.ts";
+
+import 'primeicons/primeicons.css'
+
 import ScenarioItem from "@/feature/sidebar/scenarios/scenarios-list/ScenarioItem.vue";
+import ScenariosHeader from "@/feature/sidebar/scenarios/ScenariosHeader.vue";
 
 const scenarioStore = useScenariosStore();
 </script>
@@ -12,6 +14,7 @@ const scenarioStore = useScenariosStore();
     <ScenariosHeader/>
     <div class="scenario-list">
       <ScenarioItem
+        v-bind:key="scenarioItem.id"
         v-for="scenarioItem in scenarioStore.scenarios"
         :scenario-id="scenarioItem.id"
         :scenario-name="scenarioItem.name"
