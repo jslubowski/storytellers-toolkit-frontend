@@ -3,7 +3,7 @@ import {onMounted} from "vue";
 
 import {ProgressSpinner} from "primevue";
 
-import {useScenariosStore} from "@/domain/scenario/store/scenarios.ts";
+import {useScenariosStore} from "@/domain/scenario/store/useScenariosStore.ts";
 
 import SidebarHeader from './header/SidebarHeader.vue';
 
@@ -44,9 +44,7 @@ onMounted(() => scenariosStore.fetchScenarios());
 }
 
 .p-progress-spinner-circle {
-  /* Use the PrimeUI primary variable or your own */
   stroke: hsl(var(--primary)) !important;
-  /* Disable the multi-color keyframe animation */
   animation: p-progress-spinner-dash 1.5s ease-in-out infinite !important;
 }
 

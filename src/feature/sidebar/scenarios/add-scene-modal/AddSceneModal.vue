@@ -5,38 +5,48 @@ import { Form, type FormSubmitEvent } from '@primevue/forms'
 import { yupResolver } from '@primevue/forms/resolvers/yup'
 import Message from 'primevue/message'
 import ProgressSpinner from 'primevue/progressspinner'
+import * as yup from 'yup'
 
 import { useScenariosStore } from '@/domain/scenario/store/useScenariosStore.ts'
 
 import BaseDialog from '@/components/UI/base-dialog/BaseDialog.vue'
 import BaseInputText from '@/components/UI/base-input-text/BaseInputText.vue'
 
-import {
-  type NewScenarioForm, newScenarioFormSchema
-} from '@/feature/sidebar/scenarios/new-scenario-dialog/types/NewScenarioForm.ts'
+const props = defineProps<{
+  scenarioId: string;
+}>();
 
-const isDialogVisible = defineModel<boolean>('isDialogVisible', { required: true });
+const visible = defineModel<boolean>('visible', { required: true });
+
 const scenariosStore = useScenariosStore();
 const formRef = ref();
+
+const formSchema = yup.object({
+  name: yup.string().required('Name is required'),
+  description: yup.string()
+});
+
+const formInitialValues = {
+  name: '',
+  description: ''
+};
+
+const resolver = yupResolver(formSchema);
 
 const handleSave = () => {
   formRef.value?.submit();
 };
 
 const onFormSubmit = async (e: FormSubmitEvent) => {
-  const values = { ...e.values } as NewScenarioForm;
-  await scenariosStore.addScenario(values);
+  const success = await scenariosStore.addScene(props.scenarioId, {
+    name: e.values.name,
+    description: e.values.description
+  });
 
-  if (!scenariosStore.error) {
-    isDialogVisible.value = false;
+  if (success) {
+    visible.value = false;
   }
 };
-
-const formInitialValues: NewScenarioForm = {
-  name: ''
-}
-
-const resolver = yupResolver(newScenarioFormSchema)
 </script>
 
 <template>
@@ -50,9 +60,9 @@ const resolver = yupResolver(newScenarioFormSchema)
   >
     <BaseDialog
       :on-confirm="handleSave"
-      v-model:visible="isDialogVisible"
-      confirm-label="Create Scenario"
-      header-text="New Scenario"
+      v-model:visible="visible"
+      confirm-label="Add Scene"
+      header-text="New Scene"
       :disable-confirm="!$form?.name?.value"
     >
       <transition name="p-message-content">
@@ -70,19 +80,34 @@ const resolver = yupResolver(newScenarioFormSchema)
         <ProgressSpinner style="width: 40px; height: 40px" />
       </div>
 
-      <BaseInputText
-        v-else
-        name="name"
-        label="Scenario Name"
-        required
-        placeholder="e.g. The Lost Crypt"
-        :error-message="$form.name?.error?.message"
-      />
+      <template v-else>
+        <div class="form-fields">
+          <BaseInputText
+            name="name"
+            label="Scene Name"
+            required
+            placeholder="e.g. The Dark Forest"
+            :error-message="$form.name?.error?.message"
+          />
+          <BaseInputText
+            name="description"
+            label="Description"
+            placeholder="Describe the scene..."
+            :error-message="$form.description?.error?.message"
+          />
+        </div>
+      </template>
     </BaseDialog>
   </Form>
 </template>
 
 <style scoped>
+.form-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
 .spinner-wrapper {
   display: flex;
   justify-content: center;

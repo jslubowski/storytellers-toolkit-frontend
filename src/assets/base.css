@@ -91,3 +91,13 @@ h1, h2, h3, h4, h5, h6 {
 .tracking-wider {
   letter-spacing: 0.1rem;
 }
+
+.text-xs {
+  font-size: 0.75rem;
+  line-height: 1rem;
+}
+
+.text-2xl {
+  font-size: 1.5rem;
+  line-height: 2rem;
+}
