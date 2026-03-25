@@ -7,6 +7,7 @@ import { useRoute } from 'vue-router';
 import { useSceneStore } from '@/domain/scenario/store/scene/useSceneStore.ts';
 import { useScenariosStore } from '@/domain/scenario/store/useScenariosStore.ts'
 
+import SceneBody from '@/feature/scene/SceneBody.vue'
 import SceneHeader from '@/feature/scene/SceneHeader.vue'
 
 const route = useRoute();
@@ -37,6 +38,7 @@ watch(
     <div v-else-if="sceneStore.error">{{ sceneStore.error }}</div>
     <template v-else-if="sceneStore.scene">
       <SceneHeader :scenario-id="scenarioId" />
+      <SceneBody />
     </template>
   </div>
 </template>

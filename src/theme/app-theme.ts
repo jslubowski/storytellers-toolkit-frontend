@@ -15,6 +15,19 @@ export const MyAppTheme = definePreset(Aura, {
   components: {
     button: buttonDesign,
     progressspinner: spinnerDesign,
-    inputtext: inputTextDesign
+    inputtext: inputTextDesign,
+    textarea: {
+      root: {
+        background: 'hsl(var(--card))',
+        borderColor: 'hsl(var(--primary))',
+        color: 'hsl(var(--text))',
+        hoverBorderColor: 'hsl(var(--primary))',
+      },
+      css: () => `
+          .p-textarea {
+            resize: none;
+          }
+        `
+    }
   }
 });

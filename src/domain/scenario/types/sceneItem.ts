@@ -1,6 +1,7 @@
-export type SceneItem = {
+export interface SceneItem {
   id: string;
+  scenarioId: string;
   name: string;
   description: string;
-  scenarioId: string;
-};
+  gmNotes: string | null;
+}

@@ -5,7 +5,7 @@ import { useSceneState } from './useSceneState.ts'
 
 export const useSceneStore = defineStore('scene', () => {
   const { scene, isFetching, error } = useSceneState();
-  const { fetchScene } = useSceneActions(scene, isFetching, error);
+  const { fetchScene, saveDescription, saveGmNotes, isSavingDescription, isSavingGmNotes } = useSceneActions(scene, isFetching, error);
 
-  return { scene, isFetching, error, fetchScene };
+  return { scene, isFetching, error, fetchScene, saveDescription, saveGmNotes, isSavingDescription, isSavingGmNotes };
 });
