@@ -11,8 +11,11 @@ const getScenarioById = async (id: string) =>
 const createScenario = async (command: CreateScenarioCommand) =>
   await apiClient.post<string>('/scenarios', command);
 
+const deleteScenario = async (id: string) => await apiClient.delete(`/scenarios/${id}`);
+
 export const scenarioApi = {
   getAllScenarios,
   getScenarioById,
   createScenario,
+  deleteScenario
 };

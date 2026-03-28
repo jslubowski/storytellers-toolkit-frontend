@@ -4,9 +4,9 @@ import { computed, watch } from 'vue'
 import ProgressSpinner from 'primevue/progressspinner';
 import { useRoute } from 'vue-router';
 
-import { useSceneStore } from '@/domain/scenario/store/scene/useSceneStore.ts';
 import { useScenariosStore } from '@/domain/scenario/store/useScenariosStore.ts'
 
+import { useSceneStore } from '@/domain/scene/scene/useSceneStore.ts';
 import SceneBody from '@/feature/scene/SceneBody.vue'
 import SceneHeader from '@/feature/scene/SceneHeader.vue'
 

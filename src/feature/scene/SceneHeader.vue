@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 
-import { useSceneStore } from '@/domain/scenario/store/scene/useSceneStore.ts'
 import { useScenariosStore } from '@/domain/scenario/store/useScenariosStore.ts'
+
+import { useSceneStore } from '@/domain/scene/scene/useSceneStore.ts'
 
 const props = defineProps<{
   scenarioId: string;

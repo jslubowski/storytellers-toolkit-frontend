@@ -8,4 +8,4 @@ export const useSceneSelection = () => {
   };
 
   return { activeSceneId, setActiveScene };
-}
+};

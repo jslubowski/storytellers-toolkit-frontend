@@ -7,6 +7,10 @@ export const useScenariosState = () => {
   const isFetching = ref(false);
   const isSaving = ref(false);
   const error = ref<string | null>(null);
+  const isDeletingScenario = ref(false);
+  const deleteScenarioModalData = ref<ScenarioDeleteModalData | null>(null);
 
-  return { scenarios, isFetching, isSaving, error };
+  return { scenarios, isFetching, isSaving, error, isDeletingScenario, deleteScenarioModalData };
 };
+
+export type ScenarioDeleteModalData = { scenarioId: string; scenarioName: string };

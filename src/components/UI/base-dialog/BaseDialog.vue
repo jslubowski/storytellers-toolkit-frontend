@@ -1,15 +1,17 @@
 <script setup lang="ts">
-import Button from 'primevue/button';
-import Dialog from 'primevue/dialog';
+import Button from 'primevue/button'
+import Dialog from 'primevue/dialog'
 
 const props = defineProps<{
   headerText: string;
   confirmLabel: string;
   disableConfirm?: boolean;
   onConfirm: () => void;
-}>();
+  loading?: boolean;
+  confirmButtonSeverity?: 'secondary' | 'success' | 'info' | 'warn' | 'help' | 'danger' | 'contrast';
+}>()
 
-const visible = defineModel<boolean>('visible', {required: true});
+const visible = defineModel<boolean>('visible', { required: true })
 </script>
 
 <template>
@@ -33,8 +35,10 @@ const visible = defineModel<boolean>('visible', {required: true});
     </template>
     <slot></slot>
     <template #footer>
-      <Button class="base-dialog-button" @click="visible = false" severity="danger" size="small" label="Cancel" />
-      <Button class="base-dialog-button" @click="props.onConfirm()" :disabled="disableConfirm" size="small" :label="confirmLabel" />
+      <Button class="base-dialog-button" @click="visible = false" severity="warn" size="small"
+              label="Cancel" />
+      <Button class="base-dialog-button" @click="props.onConfirm()" :disabled="disableConfirm"
+              size="small" :label="confirmLabel" :loading="loading" :severity="props.confirmButtonSeverity" />
     </template>
   </Dialog>
 </template>
@@ -63,5 +67,9 @@ const visible = defineModel<boolean>('visible', {required: true});
 
 .base-dialog-button {
   padding: 8px 16px !important;
+}
+
+h3 {
+  margin: 0;
 }
 </style>

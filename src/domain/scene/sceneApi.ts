@@ -1,6 +1,6 @@
 import type { CreatedResponse } from '@/domain/scenario/types/createdResponse.ts'
 import type { CreateSceneCommand } from '@/domain/scenario/types/createSceneCommand.ts'
-import type { SceneItem } from '@/domain/scenario/types/sceneItem.ts'
+import type { SceneItem } from '@/domain/scene/types/sceneItem.ts'
 
 import apiClient from "@/shared/api/apiClient.ts";
 
@@ -16,9 +16,13 @@ const updateDescription = async (scenarioId: string, sceneId: string, descriptio
 const updateGmNotes = async (scenarioId: string, sceneId: string, gmNotes: string | null) =>
   await apiClient.patch(`/scenarios/${scenarioId}/scenes/${sceneId}/gm-notes`, { gmNotes });
 
+const deleteScene = async (scenarioId: string, sceneId: string) =>
+  await apiClient.delete(`/scenarios/${scenarioId}/scenes/${sceneId}`);
+
 export const sceneApi = {
   getScene,
   createScene,
   updateDescription,
-  updateGmNotes
+  updateGmNotes,
+  deleteScene
 };

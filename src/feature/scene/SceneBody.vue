@@ -4,9 +4,9 @@ import { storeToRefs } from 'pinia';
 
 import { useRoute } from 'vue-router';
 
-import { useSceneStore } from '@/domain/scenario/store/scene/useSceneStore.js';
-
 import SceneEditorField from './SceneEditorField.vue';
+
+import { useSceneStore } from '@/domain/scene/scene/useSceneStore.js';
 
 const DESCRIPTION_MAX = 2000;
 const GM_NOTES_MAX = 5000;

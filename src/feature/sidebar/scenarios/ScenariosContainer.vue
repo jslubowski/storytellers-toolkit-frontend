@@ -1,13 +1,15 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref } from 'vue';
 
-import {useScenariosStore} from "@/domain/scenario/store/useScenariosStore.ts";
+import { useScenariosStore } from '@/domain/scenario/store/useScenariosStore.ts';
 
-import 'primeicons/primeicons.css'
+import 'primeicons/primeicons.css';
 
-import AddSceneModal from '@/feature/sidebar/scenarios/add-scene-modal/AddSceneModal.vue'
-import ScenarioItem from "@/feature/sidebar/scenarios/scenarios-list/ScenarioItem.vue";
-import ScenariosHeader from "@/feature/sidebar/scenarios/ScenariosHeader.vue";
+import AddSceneModal from '@/feature/sidebar/scenarios/modals/AddSceneModal.vue';
+import DeleteScenarioModal from '@/feature/sidebar/scenarios/modals/DeleteScenarioModal.vue';
+import DeleteSceneModal from '@/feature/sidebar/scenarios/modals/DeleteSceneModal.vue';
+import ScenarioItem from '@/feature/sidebar/scenarios/scenarios-list/ScenarioItem.vue';
+import ScenariosHeader from '@/feature/sidebar/scenarios/ScenariosHeader.vue';
 
 const scenarioStore = useScenariosStore();
 
@@ -22,7 +24,7 @@ const openAddScene = (scenarioId: string) => {
 
 <template>
   <div class="scenarios-container">
-    <ScenariosHeader/>
+    <ScenariosHeader />
     <div class="scenario-list">
       <ScenarioItem
         v-bind:key="scenarioItem.id"
@@ -40,6 +42,8 @@ const openAddScene = (scenarioId: string) => {
     v-model:visible="showAddScene"
     :scenario-id="activeScenarioId"
   />
+  <DeleteSceneModal />
+  <DeleteScenarioModal />
 </template>
 
 <style>

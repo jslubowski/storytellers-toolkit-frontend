@@ -12,7 +12,7 @@ export const buttonDesign = {
           hoverBackground: '{primary.800}',
           hoverBorderColor: '{primary.600}',
         },
-        danger: {
+        warn: {
           background: '{error.500}',
           hoverBackground: '{error.400}',
           activeBackground: '{error.900}',
@@ -22,6 +22,9 @@ export const buttonDesign = {
           color: 'white',
           hoverColor: 'white',
           activeColor: 'white',
+        },
+        danger: {
+          color: 'white',
         }
       }
     },
@@ -32,16 +35,24 @@ export const buttonDesign = {
           hoverBackground: '{primary.600}',
           hoverBorderColor: '{primary.600}',
         },
-        danger: {
-          background: '{error.500}',
-          hoverBackground: '{error.400}',
+        warn: {
+          background: 'transparent',
+          hoverBackground: '{error.500}',
           activeBackground: '{error.900}',
-          borderColor: '{error.500}',
-          hoverBorderColor: '{error.400}',
-          activeBorderColor: '{error.700}',
+          borderColor: 'transparent',
+          hoverBorderColor: '{error.500}',
+          activeBorderColor: '{error.900}',
           color: 'white',
           hoverColor: 'white',
           activeColor: 'white',
+        },
+        danger: {
+          color: 'white',
+          hoverColor: 'white',
+          background: '{danger.500}',
+          borderColor: '{danger.500}',
+          hoverBackground: '{danger.600}',
+          hoverBorderColor: '{danger.600}',
         }
       }
     },
