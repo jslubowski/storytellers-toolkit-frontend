@@ -73,6 +73,7 @@ const handleDeleteScene = (id: string, name: string) => {
           :key="scene.id"
           :scene="scene"
           :is-active="scenariosStore.activeSceneId === scene.id"
+          :scenario-id="scenarioId"
           @navigate="navigateToScene"
           @delete="handleDeleteScene"
         />

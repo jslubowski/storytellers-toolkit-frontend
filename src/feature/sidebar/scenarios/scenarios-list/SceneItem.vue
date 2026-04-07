@@ -3,10 +3,11 @@ import { ref } from 'vue';
 
 import Button from 'primevue/button';
 
-import { useScenariosStore } from '@/domain/scenario/store/useScenariosStore.ts';
+import { useSceneStore } from '@/domain/scene/scene/useSceneStore.ts';
 
 const props = defineProps<{
   scene: { id: string; name: string };
+  scenarioId: string;
   isActive: boolean;
 }>();
 
@@ -16,10 +17,10 @@ const emit = defineEmits<{
 
 const isHoveredOver = ref(false);
 
-const scenarioStore = useScenariosStore();
+const sceneStore = useSceneStore();
 
 const handleScenarioDelete = () =>
-  scenarioStore.openDeleteScenarioModal(props.scene.id, props.scene.name);
+  sceneStore.openDeleteSceneModal(props.scenarioId, props.scene.id, props.scene.name);
 </script>
 
 <template>
